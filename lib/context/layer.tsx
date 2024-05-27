@@ -21,9 +21,17 @@ function make_layer_ctx() {
 	return {
 		store,
 		sort(from: number, to: number) {
-			const new_list = store.layers
-			new_list[from], new_list[to] = new_list[to], new_list[from]
-			set_store('layers', new_list)
+			const list = store.layers.slice()
+			if (from > to) // 下面的往上移
+				list.splice(to, 0,
+					...list.splice(from, 1)
+				)
+			else { // 上面的往下移
+				list.splice(to + 1, 0, list[from])
+				list.splice(from, 1)
+			}
+			console.log({ from, to, list })
+			set_store('layers', list)
 		},
 		select(index: number) {
 			set_store('current', index)
@@ -35,6 +43,8 @@ function make_layer_ctx() {
 			set_store('layers', index, 'show', show)
 		},
 		drop(index: number) {
+			if (store.layers.length <= 1)
+				console.warn('length of layers less than 1')
 			set_store('layers', list => list.filter((_, i) => i != index))
 		},
 		new_layer() {
