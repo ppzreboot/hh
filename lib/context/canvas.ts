@@ -43,6 +43,17 @@ function make_canvas_ctx(layer: I_layer_mng) {
 			// console.log('adding obj')
 			repaint()
 		},
+		remove(obj: fabric.Object) {
+			for (const [_, objs] of layer_map_objs)	{
+				const index = objs.indexOf(obj)
+				if (index > -1) {
+					objs.splice(index, 1)
+					canvas.get()!.remove(obj)
+					return
+				}
+			}
+			console.warn('droping nonexistent object')
+		},
 		select(obj: fabric.Object) {
 			selected_obj.set(obj)
 		},

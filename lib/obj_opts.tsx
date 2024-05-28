@@ -34,7 +34,9 @@ const Obj_opts: Component = () => {
 					/>
 				</li>
 				<li>
-					<button>x</button>
+					<button onClick={() => {
+						ctx.remove(obj()!)
+					}}>x</button>
 				</li>
 			</ul>
 		</Show>
