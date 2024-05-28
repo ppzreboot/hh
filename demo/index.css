@@ -1,0 +1,31 @@
+.hh_demo {
+	width: 500px;
+	margin: 0 auto;
+	.obj_adder_container {
+		ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			margin: 1rem 0;
+			li {
+				margin-right: .5rem;
+			}
+		}
+	}
+	.layer_mng_container {
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 1rem 0;
+			li {
+				padding: 1rem;
+				& + li {
+					border-top: 1px solid #eee;
+				}
+			}
+			li.selected {
+				background: #f0f0f0;
+			}
+		}
+	}
+}

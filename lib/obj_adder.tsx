@@ -16,7 +16,7 @@ export
 const Obj_adder: Component<Props_add_el> = props => {
 	const add = useCTX_add_obj()
 	if (!add) throw Error('no hh context provider')
-	return <div>
+	return <div class='obj_adder_container'>
 		<ul>
 			<li>
 				<button onClick={() =>

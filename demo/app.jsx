@@ -7,7 +7,7 @@ import {
 
 export
 function App() {
-	return <div>
+	return <div class='hh_demo'>
 		<HH_ctx_provider>
 			<Obj_adder />
 			<div style={{
@@ -16,7 +16,9 @@ function App() {
 			}}>
 				<Canvas width={500} height={500} />
 			</div>
-			<Layer_mng />
+			<Layer_mng
+				add='+ new layer'
+			/>
 		</HH_ctx_provider>
 	</div>
 }

@@ -1,13 +1,18 @@
 import { For, Show } from 'solid-js'
 import { useCTX_layer } from './context'
 
+interface Props_layer_mng {
+	rm?: any
+	add?: any
+}
+
 export
-function Layer_mng() {
+function Layer_mng(props: Props_layer_mng) {
 	const ctx = useCTX_layer()
 	if (!ctx) throw Error('No layer manager context provider found')
 
 	let dragging = 0
-	return <div>
+	return <div class='layer_mng_container'>
 		<ul>
 			<For each={ctx.store.layers}>{(item, index) =>
 				<li
@@ -50,19 +55,15 @@ function Layer_mng() {
 					<Show when={ctx.store.layers.length > 0}>
 						<button
 							onclick={() => ctx.drop(index())}
-							style={{
-								border: 'none',
-								background: 'transparent',
-								outline: 'none',
-								'font-size': 'inherit',
-								width: '1em',
-								height: '1em',
-							}}
-						>x</button>
+							class='rm_layer'
+						>{props.rm || 'x'}</button>
 					</Show>
 				</li>
 			}</For>
 		</ul>
-		<button onClick={ctx.new_layer}>+</button>
+		<button
+			class='add_layer'
+			onClick={ctx.new_layer}
+		>{props.add || '+'}</button>
 	</div>
 }
