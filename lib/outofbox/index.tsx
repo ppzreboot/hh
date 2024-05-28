@@ -9,15 +9,20 @@ import {
 
 import './index.css'
 
+interface Props_outofbox {
+	width?: number
+	height?: number
+}
+
 export
-const HH_outofbox: Component = () =>
+const HH_outofbox: Component<Props_outofbox> = props =>
 	<div class='hh_outofbox'>
 		<HH_ctx_provider>
 			<div class='header_opts'>
 				<Obj_adder />
 				<Obj_opts />
 			</div>
-			<Canvas width={500} height={500} />
+			<Canvas width={props.width || 500} height={props.height || 500} />
 			<Layer_mng
 				add='+ new layer'
 			/>
