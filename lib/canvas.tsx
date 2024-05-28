@@ -5,6 +5,7 @@ import { useCTX_set_fabric_canvas } from './context'
 interface Props_canvas {
 	width: number
 	height: number
+	on_ready?: (canvas: HTMLCanvasElement) => void
 }
 
 export
@@ -18,6 +19,8 @@ const Canvas: Component<Props_canvas> = props => {
 		const f = new fabric.Canvas(raw_canvas)
 		f.preserveObjectStacking = true
 		set_canvas(f)
+		if (props.on_ready)
+			props.on_ready(f.getContext().canvas)
 	})
 	return <div
 		class='canvas_wrapper'

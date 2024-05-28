@@ -12,6 +12,7 @@ import './index.css'
 interface Props_outofbox {
 	width?: number
 	height?: number
+	on_ready?: (canvas: HTMLCanvasElement) => void
 }
 
 export
@@ -22,7 +23,11 @@ const HH_outofbox: Component<Props_outofbox> = props =>
 				<Obj_adder />
 				<Obj_opts />
 			</div>
-			<Canvas width={props.width || 500} height={props.height || 500} />
+			<Canvas
+				width={props.width || 500}
+				height={props.height || 500}
+				on_ready={props.on_ready}
+			/>
 			<Layer_mng
 				add='+ new layer'
 			/>
