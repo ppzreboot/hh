@@ -1,7 +1,4 @@
-* {
-	box-sizing: border-box;
-}
-.hh_demo {
+.hh_outofbox {
 	width: 500px;
 	margin: 0 auto;
 	button {
@@ -18,6 +15,17 @@
 		&:active{
 			background-color: #888;
 		}
+	}
+	.header_opts {
+		display: flex;
+		justify-content: space-between;
+	}
+	.canvas_wrapper {
+		background-image: linear-gradient(to right, #ffe0e0 1px, transparent 0),
+			linear-gradient(to bottom, #ffe0e0 1px, transparent 0);
+		background-color: #f8f8f8;
+		background-size: 30px 30px;
+		background-position: -5px -5px;
 	}
 	.obj_adder_container {
 		ul {
