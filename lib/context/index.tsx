@@ -22,8 +22,8 @@ const useCTX_set_fabric_canvas = () =>
 	useContext(hh_ctx)?.canvas.canvas.set
 
 export
-const useCTX_add_obj = () =>
-	useContext(hh_ctx)?.canvas.add
+const useCTX_canvas = () =>
+	useContext(hh_ctx)?.canvas
 
 export
 const useCTX_layer = () =>

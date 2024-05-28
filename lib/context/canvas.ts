@@ -5,6 +5,7 @@ import { I_layer, I_layer_mng } from './layer'
 export
 function make_canvas_ctx(layer: I_layer_mng) {
 	const canvas = Signal.null<fabric.Canvas>()
+	const selected_obj = Signal.null<fabric.Object>()
 	const layer_map_objs = new Map<I_layer, fabric.Object[]>()
 
 	/** 重画，在“layer 变化”时 */
@@ -27,6 +28,7 @@ function make_canvas_ctx(layer: I_layer_mng) {
 
 	return {
 		canvas,
+		selected_obj,
 		add(obj: fabric.Object) {
 			// 记录 obj 位置
 			const current_layer = layer.layers[layer.current]
@@ -40,6 +42,12 @@ function make_canvas_ctx(layer: I_layer_mng) {
 			// 拆了重建
 			// console.log('adding obj')
 			repaint()
+		},
+		select(obj: fabric.Object) {
+			selected_obj.set(obj)
+		},
+		render_all() {
+			canvas.get()!.renderAll()
 		},
 	}
 }

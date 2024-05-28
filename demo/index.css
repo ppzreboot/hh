@@ -12,6 +12,17 @@
 			}
 		}
 	}
+	.obj_opts_container {
+		ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			margin: 1rem 0;
+			li {
+				margin-left: .5rem;
+			}
+		}
+	}
 	.layer_mng_container {
 		ul {
 			list-style: none;

@@ -1,16 +1,20 @@
 import { fabric } from 'fabric'
 import { type Component, ParentComponent } from 'solid-js'
-import { useCTX_add_obj } from './context'
+import { useCTX_canvas } from './context'
 
 interface Props_item {
 	new_obj(): fabric.Object
 }
 const Item: ParentComponent<Props_item> = props => {
-	const add = useCTX_add_obj()
-	if (!add) throw Error('no hh context provider')
+	const ctx= useCTX_canvas()
+	if (!ctx) throw Error('no hh context provider')
 	return <li>
 		<button onClick={() => {
-			add(props.new_obj())
+			const obj = props.new_obj()
+			obj.on('selected', () => {
+				ctx.select(obj)
+			})
+			ctx.add(obj)
 		}}>{props.children}</button>
 	</li>
 }

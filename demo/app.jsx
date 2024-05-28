@@ -3,13 +3,20 @@ import {
 	Canvas,
 	Layer_mng,
 	Obj_adder,
+	Obj_opts,
 } from '../lib'
 
 export
 function App() {
 	return <div class='hh_demo'>
 		<HH_ctx_provider>
-			<Obj_adder />
+			<div style={{
+				display: 'flex',
+				'justify-content': 'space-between',
+			}}>
+				<Obj_adder />
+				<Obj_opts />
+			</div>
 			<div style={{
 				display: 'inline-block',
 				'box-shadow': '0 0 10px rgba(0,0,0, .1)',
