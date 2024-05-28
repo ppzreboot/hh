@@ -1,6 +1,6 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
-import { App } from './app'
+import { HH_outofbox } from '../lib/outofbox'
 
 const root = document.getElementById('root')
 
@@ -10,4 +10,12 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   )
 }
 
-render(() => <App />, root)
+render(
+	() =>
+		<HH_outofbox
+			height={330}
+			on_ready={console.log}
+		/>
+	,
+	root,
+)

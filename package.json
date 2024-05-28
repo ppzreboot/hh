@@ -1,14 +1,15 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
+  "name": "hh",
+  "version": "0.0.1",
+  "description": "hh: 画画",
+  "main": "lib/index.ts",
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "license": "MIT",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@types/fabric": "^5.3.7",
     "rgb-hex": "^4.1.0",
