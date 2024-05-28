@@ -1,9 +1,24 @@
 import { fabric } from 'fabric'
-import { type Component } from 'solid-js'
+import { type Component, ParentComponent } from 'solid-js'
 import { useCTX_add_obj } from './context'
+
+interface Props_item {
+	new_obj(): fabric.Object
+}
+const Item: ParentComponent<Props_item> = props => {
+	const add = useCTX_add_obj()
+	if (!add) throw Error('no hh context provider')
+	return <li>
+		<button onClick={() => {
+			add(props.new_obj())
+		}}>{props.children}</button>
+	</li>
+}
 
 interface Props_add_el {
 	rect?: any
+	tria?: any
+	circ?: any
 	text?: any
 }
 
@@ -14,26 +29,34 @@ const random_color = () => {
 
 export
 const Obj_adder: Component<Props_add_el> = props => {
-	const add = useCTX_add_obj()
-	if (!add) throw Error('no hh context provider')
 	return <div class='obj_adder_container'>
 		<ul>
-			<li>
-				<button onClick={() =>
-					add(new fabric.Rect({
-						width: 30,
-						height: 30,
-						fill: random_color(),
-					}))
-				}>{props.rect || 'Rect'}</button>
-			</li>
-			<li>
-				<button onClick={() =>
-					add(new fabric.Textbox('Click to Edit', {
-						fill: random_color(),
-					}))
-				}>{props.text || 'Text'}</button>
-			</li>
+			<Item new_obj={() =>
+				new fabric.Rect({
+					width: 50,
+					height: 50,
+					fill: random_color(),
+				})}
+			>{props.rect || 'Rect'}</Item>
+			<Item new_obj={() =>
+				new fabric.Triangle({
+					fill: random_color(),
+					width: 60,
+					height: 60,
+				})}
+			>{props.tria || 'Triangle'}</Item>
+			<Item new_obj={() =>
+				new fabric.Circle({
+					fill: random_color(),
+					radius: 35,
+				})}
+			>{props.circ || 'Circle'}</Item>
+			<Item new_obj={() =>
+				new fabric.Textbox('Click to Edit', {
+					fill: random_color(),
+					fontSize: 22,
+				})}
+			>{props.text || 'Text'}</Item>
 		</ul>
 	</div>
 }
