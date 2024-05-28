@@ -22,6 +22,7 @@ function make_layer_ctx() {
 			show: true,
 		}],
 	})
+	let layer_index = 1
 	return {
 		store,
 		sort(from: number, to: number) {
@@ -52,10 +53,12 @@ function make_layer_ctx() {
 			set_store('layers', list => list.filter((_, i) => i != index))
 		},
 		new_layer() {
-			set_store('layers', store.layers.length, {
-				name: 'layer-' + (store.layers.length + 1),
+			const index = store.layers.length
+			set_store('layers', index, {
+				name: 'layer-' + (++layer_index),
 				show: true,
 			})
+			set_store('current', index)
 		},
 	}
 }
