@@ -1,6 +1,24 @@
+* {
+	box-sizing: border-box;
+}
 .hh_demo {
 	width: 500px;
 	margin: 0 auto;
+	button {
+		border: none;
+		outline: none;
+		background-color: #f0f0f0;
+		height: 26px;
+		padding: 0 12px;
+		font-size: 12px;
+		cursor: pointer;
+		&:hover {
+			background-color: #ccc;
+		}
+		&:active{
+			background-color: #888;
+		}
+	}
 	.obj_adder_container {
 		ul {
 			list-style: none;
@@ -20,6 +38,26 @@
 			margin: 1rem 0;
 			li {
 				margin-left: .5rem;
+				& > * {
+					display: block;
+				}
+				input[type=color] {
+					border: none;
+					padding: 0;
+					height: 26px;
+					width: 38px;
+					&::-webkit-color-swatch-wrapper {
+						border: none;
+						padding: 0;
+						outline: none;
+						height: 26px;
+					}
+					&::-webkit-color-swatch {
+						height: 26px;
+						border: 1px solid #f0f0f0;
+						box-sizing: border-box;
+					}
+				}
 			}
 		}
 	}

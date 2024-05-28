@@ -59,6 +59,7 @@ const Obj_adder: Component<Props_add_el> = props => {
 				new fabric.Textbox('Click to Edit', {
 					fill: random_color(),
 					fontSize: 22,
+					width: 150,
 				})}
 			>{props.text || 'Text'}</Item>
 		</ul>
