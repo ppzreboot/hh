@@ -1,28 +1,28 @@
 import { fabric } from 'fabric'
 import { type Component, onMount } from 'solid-js'
-import { Signal } from './_utils'
+import { useCTX_set_fabric_canvas } from './context'
 
 interface Props_canvas {
 	width: number
 	height: number
-	on_ready(fabric_canvas: fabric.Canvas): void
-}
-
-const Canvas: Component<Props_canvas> = props => {
-	return raw
 }
 
 export
-function make_canvas(width: number, height: number) {
-	const fabric_canvas = Signal<null | fabric.Canvas>(null)
-	const cmp = <Canvas
-		width={width}
-		height={height}
-		on_ready={fabric_canvas.set}
-	/>
+const Canvas: Component<Props_canvas> = props => {
+	let raw_canvas: HTMLCanvasElement
+	const set_canvas = useCTX_set_fabric_canvas()
+	if (!set_canvas)
+		throw Error('no hh context provider')
 
-	return {
-		cmp,
-		fabric_canvas: fabric_canvas.get,
-	}
+	onMount(() => {
+		const f = new fabric.Canvas(raw_canvas)
+		f.preserveObjectStacking = true
+		set_canvas(f)
+	})
+	return <div
+		class='canvas_wrapper'
+		style={`width: ${props.width}px; height: ${props.height}px;`}
+	>
+		<canvas ref={raw_canvas!} width={props.width} height={props.height} />
+	</div>
 }

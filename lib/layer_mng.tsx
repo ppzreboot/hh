@@ -1,9 +1,9 @@
 import { For, Show } from 'solid-js'
-import { useLayer_mng_ctx } from './context/layer'
+import { useCTX_layer } from './context'
 
 export
 function Layer_mng() {
-	const ctx = useLayer_mng_ctx()
+	const ctx = useCTX_layer()
 	if (!ctx) throw Error('No layer manager context provider found')
 
 	let dragging = 0

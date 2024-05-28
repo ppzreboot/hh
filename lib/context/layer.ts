@@ -1,15 +1,19 @@
-import { createContext, ParentComponent, useContext } from 'solid-js'
 import { createStore } from 'solid-js/store'
 
+export
 interface I_layer {
 	name: string
 	show: boolean
 }
+
+export
 interface I_layer_mng {
 	/** 当前 layer，新添加元素会到此 layer */
 	current: number
 	layers: I_layer[]
 }
+
+export
 function make_layer_ctx() {
 	const [store, set_store] = createStore<I_layer_mng>({
 		current: 0,
@@ -54,17 +58,4 @@ function make_layer_ctx() {
 			})
 		},
 	}
-}
-
-const Layer_mng_ctx = createContext<ReturnType<typeof make_layer_ctx>>()
-
-export
-const Layer_mng_provider: ParentComponent = props => {
-	const ctx = make_layer_ctx()
-	return <Layer_mng_ctx.Provider value={ctx}>{props.children}</Layer_mng_ctx.Provider>
-}
-
-export
-function useLayer_mng_ctx() {
-	return useContext(Layer_mng_ctx)
 }

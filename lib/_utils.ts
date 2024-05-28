@@ -5,6 +5,7 @@ const Signal = <Value>(initial_val: Value) => {
 	const [get, set] = createSignal(initial_val)
 	return { get, set }
 }
+Signal.null = <Value>() => Signal<Value | null>(null)
 
 export
 function exec<Result>(cb: () => Result) {
